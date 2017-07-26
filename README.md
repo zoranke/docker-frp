@@ -1,12 +1,13 @@
 # Docker frp
-Docker image for [frp](https://github.com/fatedier/frp/).
+Docker image for [frp](https://github.com/fatedier/frp/), based on Alpine Linux.
 
 ## How to use
 Run frp server:
 ```shell
-docker run -d --name=frp-server -v /path/to/config:/opt/frp/config acrisliu/frp frps -c /opt/frp/config/frps.ini
+docker run -d -p 7000:7000 --name=frps --restart=always -v /path/to/config:/etc/frp acrisliu/frp
 ```
+
 Run frp client:
 ```shell
-docker run -d --name=frp-client -v /path/to/config:/opt/frp/config acrisliu/frp frpc -c /opt/frp/config/frpc.ini
+docker run -d --name=frpc --restart=always -v /path/to/config:/etc/frp acrisliu/frp frpc -c /etc/frp/frpc.ini
 ```
